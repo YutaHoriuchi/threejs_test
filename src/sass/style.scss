@@ -1,0 +1,75 @@
+@charset "UTF-8";
+
+// # Imports
+@import "compass";
+@import "compass/reset/";
+
+@import url(http://fonts.googleapis.com/earlyaccess/notosansjapanese.css);
+
+// # Mixin
+@mixin box($width_: 100px, $height_: $width_) {
+    width: $width_;
+    height: $height_;
+}
+
+// # Config
+
+// # default
+body {
+    font-family: 'Noto Sans Japanese', sans-serif;
+    background: #f0efe0;
+    color: #3c3931;
+    font-size: 0.8em;
+}
+h1 {
+    font-size: 2.5em;
+}
+h2 {
+    font-size: 2.2em;
+}
+h3 {
+    font-size: 2em;
+}
+h4 {
+    font-size: 1.8em;
+}
+h5 {
+    font-size: 1.4em;
+}
+h5 {
+    font-size: 1.2em;
+}
+
+.fn-hide {
+    display: none;
+}
+
+#stage {
+
+    position: relative;
+
+    .ui-controller {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: table;
+        li {
+            line-height: 1;
+            display: table-cell;
+            cursor: pointer;
+            text-align: center;
+            background: white;
+            vertical-align: middle;
+            font-size: 16px;
+            @include box(40px);
+            @include opacity(0.5);
+            &:hover {
+                @include opacity(1);
+            }
+            &.fn-hide {
+                display: none;
+            }
+        }
+    }
+
+}
