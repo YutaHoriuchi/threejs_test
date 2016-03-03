@@ -1,0 +1,111 @@
+@charset "UTF-8";
+
+// # path
+// `$img-path: ../../../src/html/img/;`
+$img-path: '/img/';
+
+// ## フォントサイズの設定
+// `$fs: 12px;` <br>
+// `$fs-s: 10px;` <br>
+// `$fs-m: 16px;` <br>
+// `$fs-l: 20px;` <br>
+// `$fs-ll: 25px;` <br>
+$fs-ss: 14px;
+$fs-s: 16px;
+$fs-ms: 18px;
+$fs: 20px;
+$fs-m: 22px;
+$fs-l: 24px;
+$fs-ll: 30px;
+
+// ## 行間の設定
+// `$fl: 1.8;` <br>
+// `$fl-s: 1.6;` <br>
+// `$fl-m: 1.8;` <br>
+// `$fl-l: 2;` <br>
+// `$fl-ll: 2.2;` <br>
+$fl: 1.8;
+$fl-s: 1.6;
+$fl-ms: 1.6;
+$fl-m: 1.8;
+$fl-l: 1.8;
+$fl-ll: 1.8;
+
+// # Media Query
+$width-pc: 1200px;
+$width-tablet: 768px;
+$width-smartphone: 768px;
+$width-scrollbar: 20px;
+
+// ---------------------------------------
+
+// # Padding
+// 余白に関連する設定<br>
+// `$pad: 10px;`<br>
+// `$pad-s: 5px;`<br>
+// `$pad-m: 20px;`<br>
+// `$pad-l: 30px;`<br>
+// `$pad-ll: 60px;`
+$pad: 10px;
+$pad-s: 5px;
+$pad-m: 20px;
+$pad-l: 30px;
+$pad-ll: 60px;
+
+// ---------------------------------------
+
+// # Color Theme Variables
+
+//     <p class="c-bl-b c-wh-t sg-box">$c-bl</p>
+$c-bl: #222222;
+//     <p class="c-dg-b c-wh-t sg-box">$c-dg</p>
+$c-dg: #333333;
+//     <p class="c-glay-b c-wh-t sg-box">$c-glay</p>
+$c-glay: #9a9a9a;
+//     <p class="c-lg-b sg-box">$c-lg</p>
+$c-lg: #e7e7e7;
+//     <p class="c-slg-b sg-box">$c-slg</p>
+$c-slg: #f7f7f7;
+//     <p class="c-wh-b sg-box">$c-wh</p>
+$c-wh: #FFFFFF;
+//     <p class="c-red-b c-wh-t sg-box">$c-red</p>
+$c-red: #cc1212;
+//     <p class="c-pink-b c-wh-t sg-box">$c-pink</p>
+$c-pink: #dd4b39;
+//     <p class="c-lpink-b c-wh-t sg-box">$c-pink</p>
+$c-lpink: #f07a6c;
+//     <p class="c-orange-b c-wh-t sg-box">$c-orange</p>
+$c-orange: #f1892b;
+//     <p class="c-yellow-b sg-box">$c-yellow</p>
+$c-yellow: #ffd800;
+//     <p class="c-green-b c-wh-t sg-box">$c-green</p>
+$c-green: #64ab30;
+//     <p class="c-sky-blue-b c-wh-t sg-box">$c-sky-blue</p>
+$c-sky-blue: #64ccef;
+//     <p class="c-lblue-b c-wh-t sg-box">$c-lblue</p>
+$c-lblue: #4a93e4;
+//     <p class="c-blue-b c-wh-t sg-box">$c-blue</p>
+$c-blue: #3366cc;
+//     <p class="c-gblue-b c-wh-t sg-box">$c-gblue</p>
+$c-gblue: #3f729b;
+
+$c-green: #5bb75b;
+
+// ---------------------------------------
+
+// # Radius
+// `$rad: 5px;`
+$rad: 5px;
+
+// ---------------------------------------
+$contents-width: 1400px;
+
+$c-orange: #f38a14;
+$c-lg-orange: #ffb515;
+$c-black: #222;
+$c-glay: #848484;
+$c-lglay: #ebebeb;
+
+$c-main: $c-orange;
+$c-text: $c-black;
+$c-ltext: $c-glay;

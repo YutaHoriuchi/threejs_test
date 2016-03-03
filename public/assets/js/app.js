@@ -1,49 +1,170 @@
 $(document).ready(function(){
 
+
+    // userAgent check
+    // ===============================================================
     var ua = navigator.userAgent;
     if (ua.indexOf('iPhone') > 0 || ua.indexOf('iPod') > 0 || ua.indexOf('Android') > 0) {
         var sp = true;
     }else if(ua.indexOf('iPad') > 0 || ua.indexOf('Android') > 0){
         var sp = true;
     }
+    var sp = false;
 
-    // var width = window.innerWidth,
-    // height = window.innerHeight;
-    var width = 500;
-    var height = width * (3 / 4);
+    // vars
+    // ===============================================================
+    var width = window.innerWidth;
+    var height = window.innerHeight;
+    // var width = 800;
+    // var height = width * (2 / 3);
+    var imgs = {
+        img001: 'assets/images/004.jpg',
+        img002: 'assets/images/002.jpg'
+    };
+    var img = {};
+    $.each(imgs, function(i, value) {
+        console.log(value);
+        img[i] = new Image();
+        img[i].src = value;
+    });
+    console.log(img);
+    console.log(img.img001);
+    // var img01 = THREE.ImageUtils.loadTexture('assets/images/004.jpg');
+    // var img02 = THREE.ImageUtils.loadTexture('assets/images/002.jpg');
+    var img01 = THREE.ImageUtils.loadTexture(img.img001.src);
+    var img02 = THREE.ImageUtils.loadTexture(img.img002.src);
+    var animate;
+    var animateStart = true;
+    var jairo = true;
+    // Configure
+    // ---------------------------------------------------------------
+    var helper = false;
 
-    //scene
+    // Click EVENT
+    // ===============================================================
+    var projector = new THREE.Projector();
+    //マウスのグローバル変数
+    var mouse = { x: 0, y: 0 };
+    //オブジェクト格納グローバル変数
+    var targetList = [];
 
+    //マウスが押された時
+    window.onmouseup = function (ev){
+        if (ev.target == renderer.domElement) {
+
+            //マウス座標2D変換
+            var rect = ev.target.getBoundingClientRect();
+            mouse.x =  ev.clientX - rect.left;
+            mouse.y =  ev.clientY - rect.top;
+
+            //マウス座標3D変換 width（横）やheight（縦）は画面サイズ
+            mouse.x =  (mouse.x / width) * 2 - 1;
+            mouse.y = -(mouse.y / height) * 2 + 1;
+
+            // マウスベクトル
+            var vector = new THREE.Vector3( mouse.x, mouse.y ,1);
+
+            // vector はスクリーン座標系なので, オブジェクトの座標系に変換
+            projector.unprojectVector( vector, camera );
+
+            // 始点, 向きベクトルを渡してレイを作成
+            var ray = new THREE.Raycaster( camera.position, vector.sub( camera.position ).normalize() );
+
+            // クリック判定
+            var obj = ray.intersectObjects( targetList );
+
+            // クリックしていたら、alertを表示
+            if ( obj.length > 0 ){
+                console.log(obj[0].object.name);
+                if(obj[0].object.name == "home"){
+                    toHome();
+                }else{
+                    toFloor();
+                    addHome(homeButton);
+                    removeCtrlObj(floorButton);
+                }
+            }
+
+        }
+    };
+
+    // scene
+    // ===============================================================
     var scene = new THREE.Scene();
 
-    //mesh
-
+    // geometries
+    // ===============================================================
     var geometry = new THREE.SphereGeometry( 5, 60, 40 );
     geometry.scale( - 1, 1, 1 );
 
+    // Mesh
+    // ===============================================================
+    // Sphere Set
     var material = new THREE.MeshBasicMaterial({
-        map: THREE.ImageUtils.loadTexture('test.jpg')
+        map: img01
     });
-
-    // material.map = 'test.jpg';
-
     sphere = new THREE.Mesh( geometry, material );
+    scene.add(sphere);
 
-    scene.add( sphere );
+    // Circle Set
+    var floorButton = new THREE.Mesh(
+        new THREE.CircleGeometry( 2, 45 ,Math.PI / 2),
+        new THREE.MeshBasicMaterial({
+            side: THREE.DoubleSide,
+            color: 0x78c762
+        })
+    );
+
+    var homeButton = new THREE.Mesh(
+        new THREE.CircleGeometry( 2, 45 ,Math.PI / 2),
+        new THREE.MeshBasicMaterial({
+            side: THREE.DoubleSide,
+            color: 0x1d63c1
+        })
+    );
+
+    function addFloor(obj){
+        obj.position.set(4,0,0);
+        obj.scale.set(0.1,0.1,0.1);
+        obj.name = 'floor';
+        scene.add(obj);
+        obj.rotation.set(0,1.5,-2);
+        targetList.push(obj);
+    };
+    addFloor(floorButton);
+
+
+    function addHome(obj){
+        obj.position.set(-4,0,-1);
+        obj.scale.set(0.1,0.1,0.1);
+        obj.name = 'home';
+        scene.add(obj);
+        obj.rotation.set(0,1.5,-2);
+        targetList.push(obj);
+    };
+    // addHome(homeButton);
+
+    function removeCtrlObj(obj){
+        scene.remove(obj);
+    };
+
 
     //camera
-
-    var camera = new THREE.PerspectiveCamera(75, width / height, 1, 1000);
-    camera.position.set(0,0,0.1);
+    // ===============================================================
+    var camera = new THREE.PerspectiveCamera(45, width / height, 1, 1000);
+    camera.position.set(0,0,1);
     camera.lookAt(sphere.position);
 
     //helper
-    var axis = new THREE.AxisHelper(1000);
-    axis.position.set(0,0,0);
-    scene.add(axis);
+    // ===============================================================
+    if(helper){
+        var axis = new THREE.AxisHelper(1000);
+        axis.position.set(0,0,0);
+        scene.add(axis);
+    }
 
     //render
-
+    // ===============================================================
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(width,height);
     renderer.setClearColor({color: 0x000000});
@@ -51,29 +172,42 @@ $(document).ready(function(){
     renderer.render(scene,camera);
 
     //control
-
-    if(sp){
-        var gcontrols = new THREE.DeviceOrientationControls(camera, renderer.domElement);
-    }else{
-        var controls = new THREE.OrbitControls(camera, renderer.domElement);
+    // ===============================================================
+    var gcontrols;
+    var controls;
+    function device(){
+        if(sp && jairo){
+            gcontrols = new THREE.DeviceOrientationControls(camera, renderer.domElement);
+        }else{
+            controls = new THREE.OrbitControls(camera, renderer.domElement);
+            // Config
+            controls.autoRotate = true;     //true:自動回転する,false:自動回転しない
+            controls.autoRotateSpeed = 0.5;    //自動回転する時の速度
+            controls.minDistance = 0;
+            controls.maxDistance = 5;
+            // this.minZoom = 0;
+    		// this.maxZoom = 5;
+            controls.noKeys = true;
+        }
     }
+    device();
 
-    controls.minDistance = 1;
-    controls.maxDistance = 5;
-    controls.noKeys = true;
-
-    var animate;
-    var animateStart = true;
-
+    // Rendering
+    // ===============================================================
     function render(){
 
-        // window.addEventListener( 'resize', onWindowResize, false );
+        window.addEventListener( 'resize', onWindowResize, false );
 
-        if(sp){
+        if(!jairo){
+            gcontrols.disconnect();
+            gcontrols.update();
+        }
+
+        if(sp && jairo){
             gcontrols.connect();
             gcontrols.update();
         }else{
-            sphere.rotation.y += 0.05 * Math.PI/180;
+            // camera.rotation.y += 0.05 * Math.PI/180;
             // sphere.rotation.set(0,0,0);
             controls.update();
         }
@@ -87,101 +221,73 @@ $(document).ready(function(){
     }
     render();
 
-    function commonCtrl(){
-        controls.update();
+    function onWindowResize() {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize( window.innerWidth, window.innerHeight );
     };
 
+    // Controller
+    // ===============================================================
     function startAnime(){
-        sphere.rotation.y += 0.05 * Math.PI/180;
-        commonCtrl();
-        requestAnimationFrame(startAnime);
+        controls.autoRotate = true;
+        controls.update();
         animateStart = true;
     }
 
     function stopAnime(){
-        sphere.rotation.y -= 0.05 * Math.PI/180;
-        commonCtrl();
-        requestAnimationFrame(stopAnime);
+        controls.autoRotate = false;
+        controls.update();
         animateStart = false;
     }
 
-    function rendup(){
-        console.log('rotate up');
-        commonCtrl();
-        renderer.clear();
-        renderer.render(scene,camera);
-        sphere.rotation.x -= Math.PI/180;
-
+    function stopJairo(){
+        jario = false;
+        device();
     }
-    function renddown(){
-        console.log('rotate down');
-        sphere.rotation.x += Math.PI/180;
-        commonCtrl();
-    }
-    function rendleft(){
-        console.log('rotate left');
-        controls.rotateLeft(50);
-        commonCtrl();
-    }
-    function rendright(){
-        console.log('rotate right');
-        sphere.rotation.y += Math.PI/180;
-        commonCtrl();
-    }
-    function rendZoomUP(){
-        console.log('zoom up');
-        commonCtrl();
-        camera.position.z += 0.5;
-    }
-    function rendZoomOut(){
-        console.log('zoom out');
-        commonCtrl();
-        camera.position.z += 0.5;
-        camera.lookAt(sphere.position);
-    }
-
-    // function onWindowResize() {
-    //     camera.aspect = window.innerWidth / window.innerHeight;
-    //     camera.updateProjectionMatrix();
-    //     renderer.setSize( window.innerWidth, window.innerHeight );
-    // };
 
     function ctrlbtn() {
         if(animateStart){
-            $('.ctrl-stop').css('display','table-cell');
+            $('.ctrl-stop').show();
             $('.ctrl-play').hide();
         }else{
             $('.ctrl-stop').hide();
-            $('.ctrl-play').css('display','table-cell');
+            $('.ctrl-play').show();
         }
     };
     ctrlbtn();
 
-    $('.ctrl-play').on('click', function(){
-        startAnime();
-        ctrlbtn();
-    });
+    function toFloor(){
+        material.map = img02;
+        addHome(homeButton);
+        removeCtrlObj(floorButton);
+        $('.m-home').removeClass('fn-active');
+        $('.m-floor').addClass('fn-active');
+    };
+    function toHome(){
+        material.map = img01;
+        addFloor(floorButton);
+        removeCtrlObj(homeButton);
+        $('.m-floor').removeClass('fn-active');
+        $('.m-home').addClass('fn-active');
+    };
+
     $('.ctrl-stop').on('click', function(){
         stopAnime();
         ctrlbtn();
     });
-    $('.ctrl-up').on('click', function(){
-        rendup();
+    $('.ctrl-play').on('click', function(){
+        startAnime();
+        ctrlbtn();
     });
-    $('.ctrl-down').on('click', function(){
-        renddown();
+
+    $('.m-floor').on('click', function(){
+        toFloor();
     });
-    $('.ctrl-left').on('click', function(){
-        rendleft();
+    $('.m-home').on('click', function(){
+        toHome();
     });
-    $('.ctrl-right').on('click', function(){
-        rendright();
-    });
-    $('.ctrl-zoom-up').on('click', function(){
-        rendZoomUP();
-    });
-    $('.ctrl-zoom-out').on('click', function(){
-        rendZoomOut();
-    });
+
+
 
 });

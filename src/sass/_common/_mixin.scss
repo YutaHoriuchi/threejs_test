@@ -1,0 +1,128 @@
+@charset "UTF-8";
+
+// # EFFECT
+
+// # BOX
+// ## box($_width, $_heigth);
+// `$_width`：横幅(Default: 100px)<br>
+// `$_height`：縦幅(Default: 横幅のサイズ)
+@mixin box($_width: 100px, $_heigth: $_width) {
+    width: $_width;
+    height: $_heigth;
+}
+
+// # POSITION
+// ## position($_x, $_y, $_xposi, $_yposi);
+// `$_x`：縦の座標位置<br>
+// `$_y`：横の座標位置<br>
+// `$_xposi`：基準を左右どちらにするか<br>
+// parm = left: 左を基準、right: 右を基準<br>
+// `$_yposi`：基準を上下のどちらにするか<br>
+// parm = top: 上を基準、bottom: 下を基準
+@mixin position($_x, $_y, $_xposi: left, $_yposi: top) {
+    position: absolute;
+    @if $_xposi == right {
+        right: $_x;
+    }@else{
+        left: $_x;
+    }
+    @if $_yposi == bottom {
+        bottom: $_y;
+    }@else{
+        top: $_y;
+    }
+}
+
+// # arrow
+// ## arrow($_color: $c-bl, $_size: 3px, $_direction: top)
+// `$_color`：色（default:0.3s）<br>
+// `$_size`：大きさ（default:linear）<br>
+// `$_direction`：方向（param:top, bottom, left, right）<br>
+@mixin arrow($_color: #333333, $_size: 3px, $_direction: top) {
+
+    @if $_direction == top {
+        border-width:0 $_size $_size $_size;
+        border-color:transparent transparent $_color transparent;
+    } @else if $_direction == bottom{
+        border-width: $_size $_size 0 $_size;
+        border-color: $_color transparent transparent transparent;
+    } @else if $_direction == right{
+        border-width:$_size 0 $_size $_size;
+        border-color:transparent transparent transparent $_color;
+    } @else { // left
+        border-width:$_size $_size $_size 0;
+        border-color:transparent $_color transparent transparent;
+    }
+    border-style:solid;
+    width:0;
+    height:0;
+    display: inline-block;
+}
+
+// # Effect
+// ## effect($_elem: 'all', $_duration: 0.3s, $_animation: 'linear');
+// `$_elem`：適用する要素（default:all）<br>
+// `$_duration`：アニメーションする時間（default:0.3s）<br>
+// `$_h-_animation`：アニメーションの種類（default:linear）<br>
+@mixin effect($_elem: all, $_duration: 0.3s, $_animation: linear) {
+    @include transition($_elem,$_duration,$_animation);
+}
+
+// ## Media PC
+// ```
+// @include mediaquery-pc {
+//   width: 100%;
+//   font-size: 100%;
+// }
+// ```
+@mixin mediaquery-pc {
+    @media only screen and (min-width: $width-tablet + $width-scrollbar) {
+        @content;
+    }
+}
+
+// ## Media tablet
+// ```
+// @include mediaquery-tablet {
+//   width: 100%;
+//   font-size: 100%;
+// }
+// ```
+@mixin mediaquery-tablet {
+    @media only screen and (min-width: $width-smartphone + $width-scrollbar) and (max-width: $width-tablet + $width-scrollbar - 1) {
+        @content;
+    }
+}
+
+// ## Media smartphone
+// ```
+// @include mediaquery-smartphone {
+//   width: 100%;
+//   font-size: 100%;
+// }
+// ```
+@mixin mediaquery-smartphone {
+    @media only screen and (max-width: $width-smartphone + $width-scrollbar - 1) {
+        @content;
+    }
+}
+
+// ## Media Print
+// ```
+// @include mediaquery-tablet {
+//   width: 100%;
+//   font-size: 100%;
+// }
+// ```
+@mixin mediaquery-print {
+    @media print {
+        @content;
+    }
+}
+
+
+// ## dummy box
+@mixin dummyBox {
+    content: ' ';
+    display: block;
+}

@@ -4,6 +4,9 @@
 @import "compass";
 @import "compass/reset/";
 
+@import "_common/configure";
+@import "_common/mixin";
+
 @import url(http://fonts.googleapis.com/earlyaccess/notosansjapanese.css);
 
 // # Mixin
@@ -20,6 +23,7 @@ body {
     background: #f0efe0;
     color: #3c3931;
     font-size: 0.8em;
+    vertical-align: top;
 }
 h1 {
     font-size: 2.5em;
@@ -47,29 +51,64 @@ h5 {
 #stage {
 
     position: relative;
+    line-height: 0;
+    // width: 800px;
 
-    .ui-controller {
+    .madori {
         position: absolute;
-        top: 0;
-        left: 0;
-        display: table;
-        li {
-            line-height: 1;
+        right: 15px;
+        top: 15px;
+        cursor: pointer;
+        $c-p: #36cda3;
+        $c-p2: #364fcd;
+        .m-floor {
+            background: rgba($c-p, 0.5);
+            border: 2px solid $c-p;
+            color: white;
             display: table-cell;
-            cursor: pointer;
-            text-align: center;
-            background: white;
             vertical-align: middle;
-            font-size: 16px;
-            @include box(40px);
-            @include opacity(0.5);
-            &:hover {
-                @include opacity(1);
-            }
-            &.fn-hide {
-                display: none;
+            text-align: center;
+            @include box(100px);
+            &:hover,
+            &.fn-active {
+                background: rgba($c-p, 0.9);
             }
         }
+        .m-home {
+            background: rgba($c-p2, 0.5);
+            border: 2px solid $c-p2;
+            color: white;
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+            @include box(50px,150px);
+            &:hover,
+            &.fn-active {
+                background: rgba($c-p2, 0.9);
+            }
+        }
+    }
+
+    .ctrls {
+        padding-top: 5px;
+        p {
+            background: rgb(255, 255, 255);
+            color: $c-bl;
+            padding: 5px 10px;
+            cursor: pointer;
+            margin-bottom: 5px;
+            @include effect();
+            @include border-radius(5px);
+            &:hover {
+                background: rgb(106, 218, 247);
+            }
+        }
+        .fn-sp {
+            display: none;
+        }
+        @include mediaquery-smartphone {
+            display: block;
+        };
     }
 
 }

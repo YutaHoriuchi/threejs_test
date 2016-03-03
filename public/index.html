@@ -10,22 +10,20 @@
 <body>
 
     <div id="stage">
-        <div class="ui-controller">
-            <ul>
-                <li class="ctrl-stop fn-hide"><i class="fa fa-stop"></i></li>
-                <li class="ctrl-play fn-hide"><i class="fa fa-play"></i></li>
-                <!-- <li class="ctrl-up"><i class="fa fa-arrow-up"></i></li>
-                <li class="ctrl-down"><i class="fa fa-arrow-down"></i></li>
-                <li class="ctrl-left"><i class="fa fa-arrow-left"></i></li>
-                <li class="ctrl-right"><i class="fa fa-arrow-right"></i></li>
-                <li class="ctrl-zoom-up"><i class="fa fa-search-plus"></i></li>
-                <li class="ctrl-zoom-out"><i class="fa fa-search-minus"></i></li> -->
-            </ul>
+        <div class="madori">
+            <div class="m-floor">FLOOR</div>
+            <div class="m-home fn-active">HOME</div>
+            <div class="ctrls">
+                <p class="ctrl-stop fn-hide"><i class="fa fa-stop"> カメラ回転を停止</i></p>
+                <p class="ctrl-play fn-hide"><i class="fa fa-play"> カメラ回転を開始</i></p>
+                <p class="ctrl-stops fn-sp"><i class="fa fa-stop"> ジャイロを停止</i></p>
+            </div>
         </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-2.2.0.min.js" charset="utf-8"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r74/three.min.js" charset="utf-8"></script>
+    <script src="assets/js/Projector.js" charset="utf-8"></script>
     <script src="assets/js/DeviceOrientationControls.js" charset="utf-8"></script>
     <script src="assets/js/OrbitControls.js" charset="utf-8"></script>
     <script src="assets/js/app.js" charset="utf-8"></script>

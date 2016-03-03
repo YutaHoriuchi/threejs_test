@@ -60,6 +60,7 @@ body {
   background: #f0efe0;
   color: #3c3931;
   font-size: 0.8em;
+  vertical-align: top;
 }
 
 h1 {
@@ -92,30 +93,65 @@ h5 {
 
 #stage {
   position: relative;
+  line-height: 0;
 }
-#stage .ui-controller {
+#stage .madori {
   position: absolute;
-  top: 0;
-  left: 0;
-  display: table;
-}
-#stage .ui-controller li {
-  line-height: 1;
-  display: table-cell;
+  right: 15px;
+  top: 15px;
   cursor: pointer;
-  text-align: center;
-  background: white;
+}
+#stage .madori .m-floor {
+  background: rgba(54, 205, 163, 0.5);
+  border: 2px solid #36cda3;
+  color: white;
+  display: table-cell;
   vertical-align: middle;
-  font-size: 16px;
-  width: 40px;
-  height: 40px;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
-  opacity: 0.5;
+  text-align: center;
+  width: 100px;
+  height: 100px;
 }
-#stage .ui-controller li:hover {
-  filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
-  opacity: 1;
+#stage .madori .m-floor:hover, #stage .madori .m-floor.fn-active {
+  background: rgba(54, 205, 163, 0.9);
 }
-#stage .ui-controller li.fn-hide {
+#stage .madori .m-home {
+  background: rgba(54, 79, 205, 0.5);
+  border: 2px solid #364fcd;
+  color: white;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  width: 50px;
+  height: 150px;
+}
+#stage .madori .m-home:hover, #stage .madori .m-home.fn-active {
+  background: rgba(54, 79, 205, 0.9);
+}
+#stage .ctrls {
+  padding-top: 5px;
+}
+#stage .ctrls p {
+  background: white;
+  color: #222222;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin-bottom: 5px;
+  -moz-transition: all, 0.3s, linear;
+  -o-transition: all, 0.3s, linear;
+  -webkit-transition: all, 0.3s, linear;
+  transition: all, 0.3s, linear;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+#stage .ctrls p:hover {
+  background: #6adaf7;
+}
+#stage .ctrls .fn-sp {
   display: none;
+}
+@media only screen and (max-width: 787px) {
+  #stage .ctrls {
+    display: block;
+  }
 }
