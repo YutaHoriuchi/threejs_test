@@ -15,8 +15,6 @@ $(document).ready(function(){
     // ===============================================================
     var width = window.innerWidth;
     var height = window.innerHeight;
-    // var width = 800;
-    // var height = width * (2 / 3);
     var imgs = {
         img001: 'assets/images/004.jpg',
         img002: 'assets/images/002.jpg'
@@ -27,10 +25,7 @@ $(document).ready(function(){
         img[i] = new Image();
         img[i].src = value;
     });
-    console.log(img);
-    console.log(img.img001);
-    // var img01 = THREE.ImageUtils.loadTexture('assets/images/004.jpg');
-    // var img02 = THREE.ImageUtils.loadTexture('assets/images/002.jpg');
+
     var img01 = THREE.ImageUtils.loadTexture(img.img001.src);
     var img02 = THREE.ImageUtils.loadTexture(img.img002.src);
     var animate;
@@ -51,7 +46,6 @@ $(document).ready(function(){
     //マウスが押された時
     window.onmouseup = function (ev){
         if (ev.target == renderer.domElement) {
-
             //マウス座標2D変換
             var rect = ev.target.getBoundingClientRect();
             mouse.x =  ev.clientX - rect.left;
@@ -72,7 +66,7 @@ $(document).ready(function(){
 
             // クリック判定
             var obj = ray.intersectObjects( targetList );
-
+console.log(obj);
             // クリックしていたら、alertを表示
             if ( obj.length > 0 ){
                 console.log(obj[0].object.name);

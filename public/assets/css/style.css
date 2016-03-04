@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import url(http://fonts.googleapis.com/earlyaccess/notosansjapanese.css);
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -89,6 +90,53 @@ h5 {
 
 .fn-hide {
   display: none;
+}
+
+body, html {
+  width: 100%;
+  height: 100%;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  display: table;
+  /* 画像ファイルの指定 */
+  background-image: url(/assets/images/background.jpg);
+  /* 画像を常に天地左右の中央に配置 */
+  background-position: center center;
+  /* 画像をタイル状に繰り返し表示しない */
+  background-repeat: no-repeat;
+  /* コンテンツの高さが画像の高さより大きい時、動かないように固定 */
+  background-attachment: fixed;
+  /* 表示するコンテナの大きさに基づいて、背景画像を調整 */
+  background-size: cover;
+  /* 背景画像が読み込まれる前に表示される背景のカラー */
+  background-color: #000;
+}
+.container .title {
+  display: table-cell;
+  vertical-align: middle;
+}
+.container .title .elem-inner {
+  width: 400px;
+  padding: 50px;
+  position: relative;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.6);
+}
+.container .title header {
+  font-weight: 200;
+  margin-bottom: 20px;
+}
+.container .title .btn {
+  background: #4b4b4b;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  padding: 5px 10px;
+  color: white;
+  text-decoration: none;
 }
 
 #stage {
