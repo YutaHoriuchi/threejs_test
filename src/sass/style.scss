@@ -2,7 +2,7 @@
 
 // # Imports
 @import "compass";
-@import "compass/reset/";
+// @import "compass/reset/";
 
 @import "_common/configure";
 @import "_common/mixin";
@@ -19,11 +19,11 @@
 
 // # default
 body {
-    font-family: 'Noto Sans Japanese', sans-serif;
-    background: #f0efe0;
-    color: #3c3931;
-    font-size: 0.8em;
-    vertical-align: top;
+    // font-family: 'Noto Sans Japanese', sans-serif;
+    // background: #f0efe0;
+    // color: #3c3931;
+    // font-size: 0.8em;
+    // vertical-align: top;
 }
 h1 {
     font-size: 2.5em;
@@ -51,7 +51,10 @@ h5 {
 body,html {
     @include box(100%);
 }
-.container {
+body {
+    position: relative;
+}
+.conte {
     @include box(100%);
     display: table;
     /* 画像ファイルの指定 */
@@ -94,6 +97,7 @@ body,html {
 
     position: relative;
     line-height: 0;
+    font-size: 12px;
     // width: 800px;
 
     .madori {
@@ -139,6 +143,7 @@ body,html {
             padding: 5px 10px;
             cursor: pointer;
             margin-bottom: 5px;
+            font-size: 12px;
             @include effect();
             @include border-radius(5px);
             &:hover {
@@ -153,4 +158,54 @@ body,html {
         };
     }
 
+}
+
+@include mediaquery-pc {
+    .sp {
+        display: none;
+    }
+}
+
+@include mediaquery-smartphone {
+    .pc {
+        display: none;
+    }
+}
+
+.table {
+    tbody {
+        th {
+            background: #363636;
+            color: $c-wh;
+        }
+    }
+}
+
+.full {
+    margin: 0;
+}
+
+.modal-window {
+    background: rgba($c-bl, 0.5);
+    @include position(0,0);
+    @include box(100%);
+    z-index: 9999;
+    display: table;
+    position: fixed;
+    vertical-align: middle;
+    text-align: center;
+    display: none;
+    .inner {
+        display: table-cell;
+        vertical-align: middle;
+        text-align: center;
+        #stage {
+            $w_: 800px;
+            $h_: $w_ * 3 / 4;
+            @include box($w_, $h_);
+            margin: 0 auto;
+            background: #FFF;
+            border: 5px solid #FFF;
+        }
+    }
 }

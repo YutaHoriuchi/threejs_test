@@ -1,57 +1,172 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-    <title>PanoView DEMO</title>
-    <link rel="stylesheet" href="assets/css/style.css">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Panorama View DEMO</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- Custom CSS -->
+    <link href="assets/css/grayscale.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
 </head>
-<body>
 
-    <div class="container">
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
 
-        <article class="title">
-        <div class="elem-inner">
-            <header><h1>パノビューデモ</h1></header>
-            <p><a class="btn various" data-fancybox-type="iframe" href="panorama.html">パノラマビューを見る</a></p>
+    <!-- Navigation -->
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top">
+                    <i class="fa fa-play-circle"></i>  <span class="light">Start</span> DEMO
+                </a>
+            </div> -->
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                <ul class="nav navbar-nav">
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#about">About</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#download">Preview</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
         </div>
-        </article>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Intro Header -->
+    <header class="intro">
+        <div class="intro-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <h1 class="brand-heading">Panorama View DEMO</h1>
+                        <p class="intro-text">パノラマビューデモ</p>
+                        <a href="#about" class="btn btn-circle page-scroll">
+                            <i class="fa fa-angle-double-down animated"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="container content-section text-center">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <h2>About</h2>
+                <p>操作について</p>
+                <ul>
+                    <li>マウス操作で、360度の写真を見渡す事ができます</li>
+                    <li>ビュー内の、円を押下すると移動できます</li>
+                    <li>ビュー内の、ミニマップを押下すると移動できます</li>
+                    <li>ビュー内の、カメラを停止を押下すると移動しているカメラを停止できます。</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section id="download" class="content-section text-center">
+        <div class="download-section">
+            <div class="container">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <h2>Preview Panorama View</h2>
+                    <p></p>
+                    <div class="pc">
+                        <span id="view" href="#" class="btn btn-default btn-lg">view</span>
+                    </div>
+                    <div class="sp">
+                        <p><a href="panorama.html" target="_blank" class="btn btn-default btn-lg">Normal</a></p>
+                        <p><a href="panorama-g.html" target="_blank" class="btn btn-default btn-lg">Jairo</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+
+
+    <!-- Footer -->
+    <footer>
+        <div class="container text-center">
+            <p>Copyright &copy; Panorama view demo 2016</p>
+        </div>
+    </footer>
+
+    <div class="modal-window">
+    <div class="inner">
+
+        <div id="stage">
+            <div class="madori">
+                <div class="m-floor">FLOOR</div>
+                <div class="m-home fn-active">HOME</div>
+                <div class="ctrls">
+                    <p class="ctrl-stop fn-hide"><i class="fa fa-stop"> カメラ回転を停止</i></p>
+                    <p class="ctrl-play fn-hide"><i class="fa fa-play"> カメラ回転を開始</i></p>
+                    <p class="ctrl-stops fn-sp"><i class="fa fa-stop"> ジャイロを停止</i></p>
+                </div>
+            </div>
+        </div>
 
     </div>
+    </div>
 
+    <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-2.2.0.min.js" charset="utf-8"></script>
 
-    <!-- Add mousewheel plugin (this is optional) -->
-<script type="text/javascript" src="/assets/source/jquery.mousewheel-3.0.6.pack.js"></script>
+    <script src="assets/js/three.min.js" charset="utf-8"></script>
+    <script src="assets/js/Projector.js" charset="utf-8"></script>
+    <script src="assets/js/DeviceOrientationControls.js" charset="utf-8"></script>
+    <script src="assets/js/OrbitControls.js" charset="utf-8"></script>
 
-<!-- Add fancyBox -->
-<link rel="stylesheet" href="/assets/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
-<script type="text/javascript" src="/assets/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
-<!-- Optionally add helpers - button, thumbnail and/or media -->
-<link rel="stylesheet" href="/assets/source/helpers/jquery.fancybox-buttons.css?v=1.0.5" type="text/css" media="screen" />
-<script type="text/javascript" src="/assets/source/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>
-<script type="text/javascript" src="/assets/source/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
+    <!-- Plugin JavaScript -->
+    <script src="assets/js/jquery.easing.min.js"></script>
 
-<link rel="stylesheet" href="/assets/source/helpers/jquery.fancybox-thumbs.css?v=1.0.7" type="text/css" media="screen" />
-<script type="text/javascript" src="/assets/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
+    <!-- Google Maps API Key - Use your own API key to enable the map feature. More information on the Google Maps API can be found at https://developers.google.com/maps/ -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRngKslUGJTlibkQ3FkfTxj3Xss1UlZDA&sensor=false"></script>
 
-<script>
-$(document).ready(function() {
-$(".various").fancybox({
-    maxWidth	: 800,
-    maxHeight	: 600,
-    fitToView	: false,
-    width		: '70%',
-    height		: '70%',
-    autoSize	: false,
-    closeClick	: false,
-    openEffect	: 'none',
-    closeEffect	: 'none'
-});
-});
-</script>
+    <!-- Custom Theme JavaScript -->
+    <script src="assets/js/grayscale.js"></script>
+    <script src="assets/js/app.js"></script>
 
 </body>
+
 </html>

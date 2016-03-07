@@ -1,69 +1,5 @@
 @charset "UTF-8";
 @import url(http://fonts.googleapis.com/earlyaccess/notosansjapanese.css);
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font: inherit;
-  font-size: 100%;
-  vertical-align: baseline;
-}
-
-html {
-  line-height: 1;
-}
-
-ol, ul {
-  list-style: none;
-}
-
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-
-caption, th, td {
-  text-align: left;
-  font-weight: normal;
-  vertical-align: middle;
-}
-
-q, blockquote {
-  quotes: none;
-}
-q:before, q:after, blockquote:before, blockquote:after {
-  content: "";
-  content: none;
-}
-
-a img {
-  border: none;
-}
-
-article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
-  display: block;
-}
-
-body {
-  font-family: 'Noto Sans Japanese', sans-serif;
-  background: #f0efe0;
-  color: #3c3931;
-  font-size: 0.8em;
-  vertical-align: top;
-}
-
 h1 {
   font-size: 2.5em;
 }
@@ -97,12 +33,16 @@ body, html {
   height: 100%;
 }
 
-.container {
+body {
+  position: relative;
+}
+
+.conte {
   width: 100%;
   height: 100%;
   display: table;
   /* 画像ファイルの指定 */
-  background-image: url(/assets/images/background.jpg);
+  background-image: url(../images/background.jpg);
   /* 画像を常に天地左右の中央に配置 */
   background-position: center center;
   /* 画像をタイル状に繰り返し表示しない */
@@ -114,22 +54,22 @@ body, html {
   /* 背景画像が読み込まれる前に表示される背景のカラー */
   background-color: #000;
 }
-.container .title {
+.conte .title {
   display: table-cell;
   vertical-align: middle;
 }
-.container .title .elem-inner {
+.conte .title .elem-inner {
   width: 400px;
   padding: 50px;
   position: relative;
   overflow: hidden;
   background: rgba(255, 255, 255, 0.6);
 }
-.container .title header {
+.conte .title header {
   font-weight: 200;
   margin-bottom: 20px;
 }
-.container .title .btn {
+.conte .title .btn {
   background: #4b4b4b;
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
@@ -142,6 +82,7 @@ body, html {
 #stage {
   position: relative;
   line-height: 0;
+  font-size: 12px;
 }
 #stage .madori {
   position: absolute;
@@ -184,6 +125,7 @@ body, html {
   padding: 5px 10px;
   cursor: pointer;
   margin-bottom: 5px;
+  font-size: 12px;
   -moz-transition: all, 0.3s, linear;
   -o-transition: all, 0.3s, linear;
   -webkit-transition: all, 0.3s, linear;
@@ -202,4 +144,50 @@ body, html {
   #stage .ctrls {
     display: block;
   }
+}
+
+@media only screen and (min-width: 788px) {
+  .sp {
+    display: none;
+  }
+}
+@media only screen and (max-width: 787px) {
+  .pc {
+    display: none;
+  }
+}
+.table tbody th {
+  background: #363636;
+  color: #FFFFFF;
+}
+
+.full {
+  margin: 0;
+}
+
+.modal-window {
+  background: rgba(34, 34, 34, 0.5);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  display: table;
+  position: fixed;
+  vertical-align: middle;
+  text-align: center;
+  display: none;
+}
+.modal-window .inner {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+.modal-window .inner #stage {
+  width: 800px;
+  height: 600px;
+  margin: 0 auto;
+  background: #FFF;
+  border: 5px solid #FFF;
 }

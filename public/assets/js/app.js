@@ -13,8 +13,9 @@ $(document).ready(function(){
 
     // vars
     // ===============================================================
-    var width = window.innerWidth;
-    var height = window.innerHeight;
+    var $target = $('#stage')
+    var width = $target.width();
+    var height = $target.height();
     var imgs = {
         img001: 'assets/images/004.jpg',
         img002: 'assets/images/002.jpg'
@@ -34,6 +35,7 @@ $(document).ready(function(){
     // Configure
     // ---------------------------------------------------------------
     var helper = false;
+    var windowResize = false;
 
     // Click EVENT
     // ===============================================================
@@ -43,90 +45,43 @@ $(document).ready(function(){
     //オブジェクト格納グローバル変数
     var targetList = [];
 
-    var iframe = $('iframe');
+    $(window).on('mouseup', function(ev) {
+        if (ev.target == renderer.domElement) {
+            //マウス座標2D変換
+            var rect = ev.target.getBoundingClientRect();
+            mouse.x =  ev.clientX - rect.left;
+            mouse.y =  ev.clientY - rect.top;
 
-    if(iframe.length == 1){
-        console.log("iframe");
-        //マウスが押された時
-        iframe.on('mouseup', function(ev) {
-            console.log(ev.target);
-            if (ev.target == renderer.domElement) {
-                //マウス座標2D変換
-                var rect = ev.target.getBoundingClientRect();
-                mouse.x =  ev.clientX - rect.left;
-                mouse.y =  ev.clientY - rect.top;
+            //マウス座標3D変換 width（横）やheight（縦）は画面サイズ
+            mouse.x =  (mouse.x / width) * 2 - 1;
+            mouse.y = -(mouse.y / height) * 2 + 1;
 
-                //マウス座標3D変換 width（横）やheight（縦）は画面サイズ
-                mouse.x =  (mouse.x / width) * 2 - 1;
-                mouse.y = -(mouse.y / height) * 2 + 1;
+            // マウスベクトル
+            var vector = new THREE.Vector3( mouse.x, mouse.y ,1);
 
-                // マウスベクトル
-                var vector = new THREE.Vector3( mouse.x, mouse.y ,1);
+            // vector はスクリーン座標系なので, オブジェクトの座標系に変換
+            projector.unprojectVector( vector, camera );
 
-                // vector はスクリーン座標系なので, オブジェクトの座標系に変換
-                projector.unprojectVector( vector, camera );
+            // 始点, 向きベクトルを渡してレイを作成
+            var ray = new THREE.Raycaster( camera.position, vector.sub( camera.position ).normalize() );
 
-                // 始点, 向きベクトルを渡してレイを作成
-                var ray = new THREE.Raycaster( camera.position, vector.sub( camera.position ).normalize() );
-
-                // クリック判定
-                var obj = ray.intersectObjects( targetList );
-                console.log(obj);
-                // クリックしていたら、alertを表示
-                if ( obj.length > 0 ){
-                    console.log(obj[0].object.name);
-                    if(obj[0].object.name == "home"){
-                        toHome();
-                    }else{
-                        toFloor();
-                        addHome(homeButton);
-                        removeCtrlObj(floorButton);
-                    }
+            // クリック判定
+            var obj = ray.intersectObjects( targetList );
+            console.log(obj);
+            // クリックしていたら、alertを表示
+            if ( obj.length > 0 ){
+                console.log(obj[0].object.name);
+                if(obj[0].object.name == "home"){
+                    toHome();
+                }else{
+                    toFloor();
+                    addHome(homeButton);
+                    removeCtrlObj(floorButton);
                 }
-
             }
-        });
-    }else{
-        console.log("window");
-        //マウスが押された時
-        $(window).on('mouseup', function(ev) {
-            if (ev.target == renderer.domElement) {
-                //マウス座標2D変換
-                var rect = ev.target.getBoundingClientRect();
-                mouse.x =  ev.clientX - rect.left;
-                mouse.y =  ev.clientY - rect.top;
 
-                //マウス座標3D変換 width（横）やheight（縦）は画面サイズ
-                mouse.x =  (mouse.x / width) * 2 - 1;
-                mouse.y = -(mouse.y / height) * 2 + 1;
-
-                // マウスベクトル
-                var vector = new THREE.Vector3( mouse.x, mouse.y ,1);
-
-                // vector はスクリーン座標系なので, オブジェクトの座標系に変換
-                projector.unprojectVector( vector, camera );
-
-                // 始点, 向きベクトルを渡してレイを作成
-                var ray = new THREE.Raycaster( camera.position, vector.sub( camera.position ).normalize() );
-
-                // クリック判定
-                var obj = ray.intersectObjects( targetList );
-                console.log(obj);
-                // クリックしていたら、alertを表示
-                if ( obj.length > 0 ){
-                    console.log(obj[0].object.name);
-                    if(obj[0].object.name == "home"){
-                        toHome();
-                    }else{
-                        toFloor();
-                        addHome(homeButton);
-                        removeCtrlObj(floorButton);
-                    }
-                }
-
-            }
-        });
-    }
+        }
+    });
 
 
 
@@ -238,7 +193,9 @@ $(document).ready(function(){
     // ===============================================================
     function render(){
 
-        window.addEventListener( 'resize', onWindowResize, false );
+        if(windowResize){
+            window.addEventListener( 'resize', onWindowResize, false );
+        }
 
         if(!jairo){
             gcontrols.disconnect();
@@ -261,7 +218,6 @@ $(document).ready(function(){
         animateStart = true;
 
     }
-    render();
 
     function onWindowResize() {
         camera.aspect = window.innerWidth / window.innerHeight;
@@ -330,6 +286,17 @@ $(document).ready(function(){
         toHome();
     });
 
+    $('#view').on('click', function(event) {
+        $('.modal-window').css('display','table');
+        render();
+    });
 
+    $(".modal-window").on('click', function(event) {
+        $(this).hide();
+    });
+
+    $("#stage").on('click', function(event) {
+        event.stopPropagation();
+    });
 
 });

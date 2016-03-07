@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <title>ソート</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+</head>
+<body>
+
+    <div class="wrapCol">
+
+        <table id="gtable" class="table">
+
+            <thead>
+                <tr>
+                    <th>名前</th>
+                    <th>効果</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <tr>
+                    <th>Eカーボン(GN粒子コーティング)</th>
+                    <td>耐久値+20％</td>
+                </tr>
+
+
+                <tr>
+                    <th>MFE型ガンディウムFGI複合装甲</th>
+                    <td>耐久値+20％</td>
+                </tr>
+
+
+                <tr>
+                    <th>インビジブル・チタニウム</th>
+                    <td>耐久値+20％</td>
+                </tr>
+
+
+                <tr>
+                    <th>月生白銅製鎧</th>
+                    <td>耐久値+20％</td>
+                </tr>
+
+
+                <tr>
+                    <th>ゼロフレーム</th>
+                    <td>耐久値+20％</td>
+                </tr>
+
+
+                <tr>
+                    <th>UE特殊装甲</th>
+                    <td>耐久値+15％</td>
+                </tr>
+
+
+                <tr>
+                    <th>マルチプル・コンストラクション・アーマー（MCA）</th>
+                    <td>耐久値+15％</td>
+                </tr>
+
+
+                <tr>
+                    <th>ガンダム・フレーム</th>
+                    <td>耐久値+15％</td>
+                </tr>
+
+
+                <tr>
+                    <th>アサルトシュラウド</th>
+                    <td>耐久値+10％</td>
+                </tr>
+
+
+                <tr>
+                    <th>ムーバブル・フレーム</th>
+                    <td>耐久値+10％</td>
+                </tr>
+
+
+                <tr>
+                    <th>クラビカルアンテナ</th>
+                    <td>耐久値+5％</td>
+                </tr>
+
+
+                <tr>
+                    <th>最初期ムーバブル・フレーム</th>
+                    <td>耐久値+5％</td>
+                </tr>
+
+
+                <tr>
+                    <th>ナノスキン</th>
+                    <td>オートリペア毎秒+2000</td>
+                </tr>
+
+
+                <tr>
+                    <th>自己修復型マイクロマシナリーテクノロジー</th>
+                    <td>オートリペア毎秒+1500</td>
+                </tr>
+
+
+                <tr>
+                    <th>DG細胞</th>
+                    <td>オートリペア毎秒+1000</td>
+                </tr>
+
+
+                <tr>
+                    <th>バイポッド</th>
+                    <td>射撃武器集弾性能+30％</td>
+                </tr>
+
+
+                <tr>
+                    <th>ガンポート</th>
+                    <td>射撃武器集弾性能+20％</td>
+                </tr>
+
+
+                <tr>
+                    <th>ダブル・パック</th>
+                    <td>射撃武器ゲージ容量+30％</td>
+                </tr>
+
+
+                <tr>
+                    <th>エネルギーパック</th>
+                    <td>射撃武器ゲージ容量+20％</td>
+                </tr>
+
+
+                <tr>
+                    <th>エネルギー供給システム</th>
+                    <td>射撃武器チャージ速度+20％</td>
+                </tr>
+
+
+                <tr>
+                    <th>高性能光学センサー・ユニット</th>
+                    <td>シューティングモードダメージ補正+50％</td>
+                </tr>
+
+
+                <tr>
+                    <th>高精度ガンカメラ</th>
+                    <td>シューティングモードダメージ補正+50％</td>
+                </tr>
+
+
+                <tr>
+                    <th>眼帯型照準用バイザー</th>
+                    <td>シューティングモードダメージ補正+30％</td>
+                </tr>
+
+
+                <tr>
+                    <th>パワーエクステンダー</th>
+                    <td>オプション装備ゲージ容量+30％</td>
+                </tr>
+
+
+                <tr>
+                    <th>エネルギーポッド</th>
+                    <td>オプション装備ゲージ容量+20％</td>
+                </tr>
+
+
+                <tr>
+                    <th>ハイパーデュートリオンエンジン</th>
+                    <td>オプション装備チャージ速度+20％</td>
+                </tr>
+
+
+                <tr>
+                    <th>高性能管制コンピューター</th>
+                    <td>オプション装備チャージ速度+15％</td>
+                </tr>
+
+
+                <tr>
+                    <th>バイオコンピューター</th>
+                    <td>反応速度+5％</td>
+                </tr>
+
+
+                <tr>
+                    <th>バイオセンサー</th>
+                    <td>反応速度+5％</td>
+                </tr>
+
+
+                <tr>
+                    <th>インテンション・オートマチック・システム</th>
+                    <td>反応速度+5％</td>
+                </tr>
+
+
+                <tr>
+                    <th>リユース・サイコ・デバイス</th>
+                    <td>反応速度+5％</td>
+                </tr>
+
+
+                <tr>
+                    <th>阿頼耶識システム</th>
+                    <td>反応速度+5％</td>
+                </tr>
+
+
+                <tr>
+                    <th>VPS特殊フレーム</th>
+                    <td>反応速度+5％</td>
+                </tr>
+
+
+                <tr>
+                    <th>フルサイコフレーム</th>
+                    <td>反応速度+5％</td>
+                </tr>
+
+
+                <tr>
+                    <th>アームド・アーマーXC</th>
+                    <td>反応速度+4.5％</td>
+                </tr>
+
+
+                <tr>
+                    <th>脳量子波管制制御</th>
+                    <td>反応速度+4.5％</td>
+                </tr>
+
+
+                <tr>
+                    <th>サイコフレーム</th>
+                    <td>反応速度+4.5％</td>
+                </tr>
+
+
+                <tr>
+                    <th>サイコミュ</th>
+                    <td>反応速度+4％</td>
+                </tr>
+
+
+                <tr>
+                    <th>PS特殊フレーム</th>
+                    <td>反応速度+4％</td>
+                </tr>
+
+
+                <tr>
+                    <th>擬似サイコミュ</th>
+                    <td>反応速度+3.5％</td>
+                </tr>
+
+
+                <tr>
+                    <th>フラッシュシステム</th>
+                    <td>反応速度+3％</td>
+                </tr>
+
+
+                <tr>
+                    <th>マグネット・コーティング</th>
+                    <td>反応速度+3％</td>
+                </tr>
+
+
+                <tr>
+                    <th>アストレイ特殊フレーム</th>
+                    <td>反応速度+3％</td>
+                </tr>
+
+
+                <tr>
+                    <th>8（ハチ）</th>
+                    <td>反応速度+2.5％</td>
+                </tr>
+
+
+                <tr>
+                    <th>ハロ</th>
+                    <td>反応速度+2.5％</td>
+                </tr>
+
+
+                <tr>
+                    <th>戦闘支援AI</th>
+                    <td>反応速度+2％</td>
+                </tr>
+
+
+                <tr>
+                    <th>操縦支援AI</th>
+                    <td>反応速度+2％</td>
+                </tr>
+
+
+                <tr>
+                    <th>自己対話型複列分散処理AI</th>
+                    <td>反応速度+2％</td>
+                </tr>
+
+
+                <tr>
+                    <th>サブコントロール・システム</th>
+                    <td>反応速度+1％</td>
+                </tr>
+
+
+                <tr>
+                    <th>FRPユニット</th>
+                    <td>移動速度+10％</td>
+                </tr>
+
+
+                <tr>
+                    <th>Iフィールド・ビーム・ドライブ</th>
+                    <td>移動速度+10％</td>
+                </tr>
+
+
+                <tr>
+                    <th>高出力ホバーユニット</th>
+                    <td>移動速度+10％</td>
+                </tr>
+
+
+                <tr>
+                    <th>コロイド粒子機体制御</th>
+                    <td>移動速度+8％</td>
+                </tr>
+
+
+                <tr>
+                    <th>プラフスキー粒子コントロール</th>
+                    <td>移動速度+8％</td>
+                </tr>
+
+
+                <tr>
+                    <th>熱核ホバーエンジン</th>
+                    <td>移動速度+8％</td>
+                </tr>
+
+
+                <tr>
+                    <th>流体パルスアクセラレーター</th>
+                    <td>移動速度+7％</td>
+                </tr>
+
+
+                <tr>
+                    <th>アポジモーター</th>
+                    <td>移動速度+5％</td>
+                </tr>
+
+
+                <tr>
+                    <th>DHGCP</th>
+                    <td>スラスター容量+5000</td>
+                </tr>
+
+
+                <tr>
+                    <th>HPHGCPジェネレーター</th>
+                    <td>スラスター容量+5000</td>
+                </tr>
+
+
+                <tr>
+                    <th>フォトン・バッテリー</th>
+                    <td>スラスター容量+5000</td>
+                </tr>
+
+
+                <tr>
+                    <th>エイハブ・リアクター</th>
+                    <td>スラスター容量+5000</td>
+                </tr>
+
+
+                <tr>
+                    <th>プラズマ圧縮炉</th>
+                    <td>スラスター容量+4500</td>
+                </tr>
+
+
+                <tr>
+                    <th>核分裂炉</th>
+                    <td>スラスター容量+4000</td>
+                </tr>
+
+
+                <tr>
+                    <th>フルドドⅡ</th>
+                    <td>スラスター容量+4000</td>
+                </tr>
+
+
+                <tr>
+                    <th>核エンジン</th>
+                    <td>スラスター容量+3500</td>
+                </tr>
+
+
+                <tr>
+                    <th>プロペラントタンク</th>
+                    <td>スラスター容量+3000</td>
+                </tr>
+
+
+                <tr>
+                    <th>プロペラント・タンク</th>
+                    <td>スラスター容量+3000</td>
+                </tr>
+
+
+                <tr>
+                    <th>プロペラント</th>
+                    <td>スラスター容量+2000</td>
+                </tr>
+
+
+                <tr>
+                    <th>ハイパーブースト</th>
+                    <td>ブースト速度+10％</td>
+                </tr>
+
+
+                <tr>
+                    <th>ユニバーサル・ブースト・ポッド</th>
+                    <td>ブースト速度+10％</td>
+                </tr>
+
+
+                <tr>
+                    <th>VL転用ウイングユニット</th>
+                    <td>ブースト速度+10％</td>
+                </tr>
+
+
+                <tr>
+                    <th>スーパードラグーン 機動兵装ウイング</th>
+                    <td>ブースト速度+10％</td>
+                </tr>
+
+
+                <tr>
+                    <th>ミノフスキー・ドライブ</th>
+                    <td>ブースト速度+10％</td>
+                </tr>
+
+
+                <tr>
+                    <th>スーパーバーニア</th>
+                    <td>ブースト速度+8％</td>
+                </tr>
+
+
+                <tr>
+                    <th>土星エンジン</th>
+                    <td>ブースト速度+8％</td>
+                </tr>
+
+
+                <tr>
+                    <th>高出力可動式スラスター</th>
+                    <td>ブースト速度+8％</td>
+                </tr>
+
+
+                <tr>
+                    <th>ウイングスラスター</th>
+                    <td>ブースト速度+8％</td>
+                </tr>
+
+
+                <tr>
+                    <th>ウイングスラスター（翼）</th>
+                    <td>ブースト速度+8％</td>
+                </tr>
+
+
+                <tr>
+                    <th>ウイングバインダー</th>
+                    <td>ブースト速度+8％</td>
+                </tr>
+
+
+                <tr>
+                    <th>エピオンウイング</th>
+                    <td>ブースト速度+8％</td>
+                </tr>
+
+
+                <tr>
+                    <th>フレキシブル・スラスター</th>
+                    <td>ブースト速度+7％</td>
+                </tr>
+
+
+                <tr>
+                    <th>ウイングユニット</th>
+                    <td>ブースト速度+7％</td>
+                </tr>
+
+
+                <tr>
+                    <th>シュツルム・ブースター</th>
+                    <td>ブースト速度+6％</td>
+                </tr>
+
+
+                <tr>
+                    <th>シールド・ブースター</th>
+                    <td>ブースト速度+6％</td>
+                </tr>
+
+
+                <tr>
+                    <th>テール・バインダー</th>
+                    <td>ブースト速度+6％</td>
+                </tr>
+
+
+                <tr>
+                    <th>フレキシブル・スラスター・バインダー</th>
+                    <td>ブースト速度+6％</td>
+                </tr>
+
+
+                <tr>
+                    <th>ロケットブースター</th>
+                    <td>ブースト速度+6％</td>
+                </tr>
+
+
+                <tr>
+                    <th>可動式ブースター・ポッド+シールド・ブースター</th>
+                    <td>ブースト速度+6％</td>
+                </tr>
+
+
+                <tr>
+                    <th>大推力ブースターユニット</th>
+                    <td>ブースト速度+6％</td>
+                </tr>
+
+
+                <tr>
+                    <th>大気圏内用熱核ジェットエンジン</th>
+                    <td>ブースト速度+6％</td>
+                </tr>
+
+
+                <tr>
+                    <th>スラスター・ベーン</th>
+                    <td>ブースト速度+5％</td>
+                </tr>
+
+
+                <tr>
+                    <th>トーラス型可動式スラスター</th>
+                    <td>ブースト速度+5％</td>
+                </tr>
+
+
+                <tr>
+                    <th>バーニアバインダー</th>
+                    <td>ブースト速度+5％</td>
+                </tr>
+
+
+                <tr>
+                    <th>ミノフスキー・フライト</th>
+                    <td>ブースト速度+5％</td>
+                </tr>
+
+
+                <tr>
+                    <th>ブースターバインダー</th>
+                    <td>ブースト速度+3％</td>
+                </tr>
+
+
+                <tr>
+                    <th>ムーバブル・シールド</th>
+                    <td>ブースト速度+3％</td>
+                </tr>
+
+
+                <tr>
+                    <th>高機動プレート</th>
+                    <td>ブースト速度+3％</td>
+                </tr>
+
+
+                <tr>
+                    <th>アクティブ・バインダー</th>
+                    <td>ブースト速度+3％</td>
+                </tr>
+
+
+                <tr>
+                    <th>ウイング・バインダー</th>
+                    <td>ブースト速度+3％</td>
+                </tr>
+
+
+                <tr>
+                    <th>ラジエータープレート</th>
+                    <td>ブースト速度+3％</td>
+                </tr>
+
+
+                <tr>
+                    <th>AGEシステム</th>
+                    <td>覚醒時間延長+2sec</td>
+                </tr>
+
+
+                <tr>
+                    <th>大水牛の脇立</th>
+                    <td>覚醒時間延長+1.5sec</td>
+                </tr>
+
+
+                <tr>
+                    <th>ゼロシステムコピー</th>
+                    <td>覚醒時間延長+1.5sec</td>
+                </tr>
+
+
+                <tr>
+                    <th>ブレードアンテナ</th>
+                    <td>覚醒時間延長+1sec</td>
+                </tr>
+
+
+                <tr>
+                    <th>ロッドアンテナ</th>
+                    <td>覚醒時間延長+1sec</td>
+                </tr>
+
+
+                <tr>
+                    <th>ツインドライヴシステム</th>
+                    <td>トランス系EXアクションの効果時間+15sec</td>
+                </tr>
+
+
+                <tr>
+                    <th>GNドライヴ</th>
+                    <td>トランス系EXアクションの効果時間+10sec</td>
+                </tr>
+
+
+                <tr>
+                    <th>擬似太陽炉</th>
+                    <td>トランス系EXアクションの効果時間+5sec</td>
+                </tr>
+
+
+                <tr>
+                    <th>放熱フィン</th>
+                    <td>トランス系EXアクションの効果時間+5sec</td>
+                </tr>
+
+
+                <tr>
+                    <th>リブジャマー</th>
+                    <td>カモフラージュ系EXアクションの効果時間+15sec</td>
+                </tr>
+
+
+                <tr>
+                    <th>ファイティングサイト</th>
+                    <td>のけぞり誘発+50％</td>
+                </tr>
+
+
+                <tr>
+                    <th>関節シーリング</th>
+                    <td>自機パーツ外れ耐性+25％</td>
+                </tr>
+
+
+                <tr>
+                    <th>スキャニングターレット</th>
+                    <td>パーツ外し補正+2％</td>
+                </tr>
+
+
+                <tr>
+                    <th>スパイクアーマー</th>
+                    <td>パーツ外し補正+1％</td>
+                </tr>
+
+
+                <tr>
+                    <th>打撃用スパイク</th>
+                    <td>パーツ外し補正+1％</td>
+                </tr>
+
+
+                <tr>
+                    <th>ヴァリアブルフェイズシフト装甲</th>
+                    <td>物理耐性+20％</td>
+                </tr>
+
+
+                <tr>
+                    <th>トランスフェイズ装甲</th>
+                    <td>物理耐性+18％</td>
+                </tr>
+
+
+                <tr>
+                    <th>フェイズシフト装甲</th>
+                    <td>物理耐性+15％</td>
+                </tr>
+
+
+                <tr>
+                    <th>ナノラミネートアーマー</th>
+                    <td>物理耐性+15％</td>
+                </tr>
+
+
+                <tr>
+                    <th>ウイングシールド</th>
+                    <td>物理耐性+10％</td>
+                </tr>
+
+
+                <tr>
+                    <th>リアクティブアーマー</th>
+                    <td>物理耐性+10％</td>
+                </tr>
+
+
+                <tr>
+                    <th>リアクティブ・アーマー</th>
+                    <td>物理耐性+10％</td>
+                </tr>
+
+
+                <tr>
+                    <th>ヤタノカガミ</th>
+                    <td>ビーム耐性+20％</td>
+                </tr>
+
+
+                <tr>
+                    <th>耐ビーム・コーティング</th>
+                    <td>ビーム耐性+10％</td>
+                </tr>
+
+
+                <tr>
+                    <th>チョバムアーマー構造</th>
+                    <td>物理ガード+10％</td>
+                </tr>
+
+
+                <tr>
+                    <th>ビームシールド（対物理）</th>
+                    <td>物理ガード+10％</td>
+                </tr>
+
+
+                <tr>
+                    <th>大型耐物理装甲</th>
+                    <td>物理ガード+8％</td>
+                </tr>
+
+
+                <tr>
+                    <th>中型耐物理装甲</th>
+                    <td>物理ガード+5％</td>
+                </tr>
+
+
+                <tr>
+                    <th>ヒート・ブレード</th>
+                    <td>物理ガード+1％</td>
+                </tr>
+
+
+                <tr>
+                    <th>ラミネート装甲</th>
+                    <td>ビームガード+10％</td>
+                </tr>
+
+
+                <tr>
+                    <th>ビームシールド（対ビーム）</th>
+                    <td>ビームガード+10％</td>
+                </tr>
+
+
+                <tr>
+                    <th>耐ビームコーティング</th>
+                    <td>ビームガード+8％</td>
+                </tr>
+
+
+                <tr>
+                    <th>耐ビーム・コーティング（シールド）</th>
+                    <td>ビームガード+8％</td>
+                </tr>
+
+
+                <tr>
+                    <th>大型耐ビーム装甲</th>
+                    <td>ビームガード+8％</td>
+                </tr>
+
+
+                <tr>
+                    <th>ビーム・ジュッテ</th>
+                    <td>ビームガード+8％</td>
+                </tr>
+
+
+                <tr>
+                    <th>対ビームコーティング</th>
+                    <td>ビームガード+6％</td>
+                </tr>
+
+
+                <tr>
+                    <th>中型耐ビーム装甲</th>
+                    <td>ビームガード+5％</td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-2.2.0.min.js" charset="utf-8"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/t/dt/dt-1.10.11/datatables.min.css"/>
+    <script type="text/javascript" src="https://cdn.datatables.net/t/dt/dt-1.10.11/datatables.min.js"></script>
+
+    <script type="text/javascript">
+
+    $(document).ready(function() {
+        $('#gtable').DataTable({
+            paging: false
+        });
+    });
+
+    </script>
+
+</body>
+</html>
